@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\balacne_controller.dir/objects.a
+C:\Qt\Tools\mingw810_64\bin\ar.exe cr CMakeFiles\balacne_controller.dir/objects.a @CMakeFiles\balacne_controller.dir\objects1.rsp
+C:\Qt\Tools\mingw810_64\bin\g++.exe -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\balacne_controller.dir/objects.a -Wl,--no-whole-archive -o balacne_controller.exe -Wl,--out-implib,libbalacne_controller.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\balacne_controller.dir\linklibs.rsp

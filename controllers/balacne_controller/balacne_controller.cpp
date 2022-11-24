@@ -1,19 +1,35 @@
 #include <webots/Robot.hpp>
-
+#include <webots/supervisor.hpp>
+#include <webots/keyboard.hpp>
 // Added a new include file
 #include <webots/Motor.hpp>
 #include <webots/InertialUnit.hpp>
 #include "PID.h"
+#include <windows.h>
 #define TIME_STEP 8
 
-#define MAX_SPEED 0.628
+/* Controller parameters */
+#define PID_KP  34.0f
+#define PID_KI  16.0f
+#define PID_KD  5.0f
+
+#define PID_TAU 0.02f
+
+#define PID_LIM_MIN -20.0f
+#define PID_LIM_MAX  20.0f
+
+#define PID_LIM_MIN_INT -20.0f
+#define PID_LIM_MAX_INT  20.0f
+
+#define SAMPLE_TIME_S 1.0f
 
 // All the webots classes are defined in the "webots" namespace
 using namespace webots;
 
 int main(int argc, char **argv) {
- Robot *robot = new Robot();
-
+    Supervisor *robot = new Supervisor();
+    Keyboard* keyboard = new Keyboard();
+    keyboard->enable(TIME_STEP);
  // get a handler to the motors and set target position to infinity (speed control)
  Motor *leftMotor = robot->getMotor("motorLeft");
  Motor *rightMotor = robot->getMotor("motorRight");
@@ -25,40 +41,32 @@ int main(int argc, char **argv) {
  inertial->enable(TIME_STEP);
 
  // set up the motor speeds at 10% of the MAX_SPEED.
-    double j = 0; //KP*j
-    double k = 0;
-    double m = 0;
-    double SUM = 0;
-    double diff = 0;
-    double KP = 34;
-    double KI = 16;
-    double KD = 5;
-    double vel = 0.00;
+    PIDController pid = { PID_KP, PID_KI, PID_KD,
+                          PID_TAU,
+                          PID_LIM_MIN, PID_LIM_MAX,
+                          PID_LIM_MIN_INT, PID_LIM_MAX_INT,
+                          SAMPLE_TIME_S };
 
-
+    PIDController_Init(&pid);
+    float setpoint = 0.0f;
+    double out = 0.0f;
  while (robot->step(TIME_STEP) != -1){
-     printf("\n");
-
-     leftMotor->setVelocity(vel);
-     rightMotor->setVelocity(vel);
-     diff = inertial->getRollPitchYaw()[0] - m;
-     m =  inertial->getRollPitchYaw()[0];
-     j =  inertial->getRollPitchYaw()[0] - (0) * 1.5708 / 180;
-     k = j;
-     SUM = SUM + k;
-     printf("j: %lf ", j);
-
-     printf("sum: %lf ",SUM);
-     vel = (j * KP + SUM * KI + diff * KD);
-     printf("vel: %lf ",vel);
-     if (vel == 0)
-     {
-         vel = 0.20;
+     double measurement = inertial->getRollPitchYaw()[0];
+     switch (keyboard->getKey()) {
+         case Keyboard::UP:
+             setpoint = 0.1;
+             break;
+         case Keyboard::DOWN:
+             setpoint = -0.1;
+             break;
+         default:
+             setpoint = 0.0f;
      }
-     if (vel == 15)
-     {
-         vel = 14.8;
-     }
+     PIDController_Update(&pid, setpoint, measurement);
+     leftMotor->setVelocity(-pid.out);
+     rightMotor->setVelocity(-pid.out);
+     printf("setpoint:%f  roll:%f    Velocity:%f    out:%f \n", \
+          setpoint, measurement,leftMotor->getVelocity(),-pid.out);
  };
 
  delete robot;

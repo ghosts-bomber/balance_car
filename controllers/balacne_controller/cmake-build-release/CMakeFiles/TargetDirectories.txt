@@ -1,0 +1,3 @@
+C:/Users/Administrator/Desktop/hard/balance_car/controllers/balacne_controller/cmake-build-release/CMakeFiles/balacne_controller.dir
+C:/Users/Administrator/Desktop/hard/balance_car/controllers/balacne_controller/cmake-build-release/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/Desktop/hard/balance_car/controllers/balacne_controller/cmake-build-release/CMakeFiles/rebuild_cache.dir

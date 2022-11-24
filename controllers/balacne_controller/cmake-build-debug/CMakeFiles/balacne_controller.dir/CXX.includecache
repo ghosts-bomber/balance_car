@@ -1,0 +1,82 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Program Files/Webots/include/controller/c/webots/contact_point.h
+
+C:/Program Files/Webots/include/controller/c/webots/types.h
+math.h
+-
+
+C:/Program Files/Webots/include/controller/cpp/webots/Device.hpp
+string
+-
+../../c/webots/types.h
+C:/Program Files/Webots/include/controller/c/webots/types.h
+
+C:/Program Files/Webots/include/controller/cpp/webots/Field.hpp
+string
+-
+webots/Node.hpp
+-
+../../c/webots/types.h
+C:/Program Files/Webots/include/controller/c/webots/types.h
+
+C:/Program Files/Webots/include/controller/cpp/webots/InertialUnit.hpp
+webots/Device.hpp
+-
+
+C:/Program Files/Webots/include/controller/cpp/webots/Keyboard.hpp
+
+C:/Program Files/Webots/include/controller/cpp/webots/Motor.hpp
+webots/Device.hpp
+-
+math.h
+-
+
+C:/Program Files/Webots/include/controller/cpp/webots/Node.hpp
+string
+-
+webots/Field.hpp
+-
+../../c/webots/contact_point.h
+C:/Program Files/Webots/include/controller/c/webots/contact_point.h
+../../c/webots/types.h
+C:/Program Files/Webots/include/controller/c/webots/types.h
+
+C:/Program Files/Webots/include/controller/cpp/webots/Robot.hpp
+iostream
+-
+vector
+-
+
+C:/Program Files/Webots/include/controller/cpp/webots/Supervisor.hpp
+webots/Device.hpp
+-
+webots/Node.hpp
+-
+webots/Robot.hpp
+-
+
+C:/Users/Administrator/Desktop/hard/balance_car/controllers/balacne_controller/PID.h
+
+C:/Users/Administrator/Desktop/hard/balance_car/controllers/balacne_controller/balacne_controller.cpp
+webots/Robot.hpp
+-
+webots/supervisor.hpp
+-
+webots/keyboard.hpp
+-
+webots/Motor.hpp
+-
+webots/InertialUnit.hpp
+-
+PID.h
+C:/Users/Administrator/Desktop/hard/balance_car/controllers/balacne_controller/PID.h
+windows.h
+-
+
