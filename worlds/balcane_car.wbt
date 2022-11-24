@@ -1,0 +1,189 @@
+#VRML_SIM R2022b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/appearances/protos/Parquetry.proto"
+
+WorldInfo {
+  basicTimeStep 8
+}
+Viewpoint {
+  orientation -0.09682552135589265 0.01641244134162574 0.9951660415143632 2.8073919986611626
+  position -0.825782040268396 -7.91135064879313 0.23227033436434436
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 20 20
+  floorAppearance Parquetry {
+    type "light strip"
+    textureTransform TextureTransform {
+    }
+    IBLStrength 0
+  }
+}
+Robot {
+  translation -1.472119967782966 -7.683031151286507 0.0599005623228674
+  rotation 1.3688722449478984e-07 0.99992507328954 -0.012241233879372381 5.369426598659571e-07
+  children [
+    InertialUnit {
+      children [
+        DEF unit Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "inertial"
+      boundingObject USE unit
+      physics Physics {
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1294.9178341078718
+        anchor 0.05 0 -0.03
+      }
+      device [
+        RotationalMotor {
+          name "motorRight"
+          maxVelocity 20
+        }
+      ]
+      endPoint Solid {
+        translation 0.055 0 -0.03
+        rotation 0.26487837892693905 0.9270787410649594 0.2652629869439891 1.6464805151198003
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+        linearVelocity -1.3640457136365288e-13 4.704548423858371e-08 2.467504522165637e-13
+        angularVelocity -1.5682081694919205e-06 -4.545053071628122e-12 -5.497180085029702e-14
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1300.2433460338862
+        anchor -0.05 0 -0.03
+      }
+      device [
+        RotationalMotor {
+          name "motorLeft"
+          maxVelocity 20
+        }
+      ]
+      endPoint Solid {
+        translation -0.055 0 -0.03
+        rotation -0.19537104477804945 0.961145920917081 -0.19500941917453568 1.610263299737501
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+        linearVelocity -1.355524717328845e-13 4.704558712063952e-08 -2.442567784493749e-13
+        angularVelocity -1.5682081745275362e-06 -4.528712521626261e-12 -3.151442386878496e-14
+      }
+    }
+    DEF rootSolid Group {
+      children [
+        DEF tuiShape Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.02 0.04 0.02
+          }
+        }
+        Transform {
+          translation -0.04 0 -0.03
+          children [
+            Solid {
+              children [
+                USE tuiShape
+              ]
+              name "solid(3)"
+              boundingObject USE tuiShape
+              physics Physics {
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 0.04 0 -0.03
+          children [
+            Solid {
+              boundingObject DEF tuiShape Shape {
+                appearance PBRAppearance {
+                }
+                geometry Box {
+                  size 0.02 0.04 0.02
+                }
+              }
+              physics Physics {
+              }
+            }
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.02 0.04 0.02
+              }
+            }
+          ]
+        }
+        DEF main Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.04 0.04
+          }
+        }
+      ]
+    }
+  ]
+  boundingObject DEF main Shape {
+    appearance PBRAppearance {
+    }
+    geometry Box {
+      size 0.1 0.04 0.04
+    }
+  }
+  physics Physics {
+  }
+  controller "balacne_controller"
+  linearVelocity -2.517578368211883e-13 4.704553569491173e-08 1.5094431174178293e-15
+  angularVelocity 9.400235728021493e-14 -4.54057348303243e-12 -8.854594231906246e-13
+}
