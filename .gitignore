@@ -1,0 +1,4 @@
+./controllers/balacne_controller/.idea
+./controllers/balacne_controller/build
+./controllers/balacne_controller/cmake-build-debug
+./controllers/balacne_controller/cmake-build-release

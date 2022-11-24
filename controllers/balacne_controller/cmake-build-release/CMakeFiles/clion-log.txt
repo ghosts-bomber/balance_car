@@ -1,4 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - MinGW Makefiles" C:\Users\Administrator\Desktop\hard\balance_car\controllers\balacne_controller
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/Administrator/Desktop/hard/balance_car/controllers/balacne_controller/cmake-build-release
